@@ -2,12 +2,15 @@
 
 # This script will launch the cub3D binary with all the maps in the folder maps/bad
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-
 # check if the path is valid
 if [ ! -f "../cub3D" ]; then
-	echo "No cub3D binary found in the parent folder"
+	echo "No cub3D binary found in the parent folder, please be sure that you are running this script from the tester folder"
+	exit 1
+fi
+
+# check if the maps folder exist
+if [ ! -d "./maps" ]; then
+	echo "No maps folder found, please be sure that you are running this script from the tester folder"
 	exit 1
 fi
 
@@ -19,7 +22,8 @@ if [ "$bonus" = "y" ]; then
 	exe_bonus="../cub3D_bonus"
 	if [ ! -f "$exe_bonus" ]; then
 		echo "No cub3D_bonus binary found at $exe_bonus"
-		exit 1
+		echo "Ignoring the bonus executable"
+		bonus="n"
 	fi
 fi
 
@@ -30,8 +34,6 @@ RED='\033[0;31m'
 RESET='\033[0m'
 
 failed=0
-
-echo "$maps"
 
 for file in "$maps"/*.cub
 do
