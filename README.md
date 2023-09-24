@@ -1,8 +1,7 @@
 
 # cub3D Parsing Tester
 
-A brief description of what this project does and who it's for
-
+ A small shell script to test the parsing component of your Cub3D project 
 
 ## Overview
 This shell script is a utility for testing the parsing functionality of a Cub3D project. It come with 31 ".cub" that are wrongly formated, each for a different reason. \
