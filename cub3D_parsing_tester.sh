@@ -34,7 +34,6 @@ RED='\033[0;31m'
 RESET='\033[0m'
 
 failed=0
-
 for file in "$maps"/*.cub
 do
 	timeout 1s $exe "$file" > /dev/null 2>&1
