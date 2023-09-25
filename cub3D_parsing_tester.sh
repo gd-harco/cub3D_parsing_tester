@@ -14,6 +14,15 @@ if [ ! -d "./maps" ]; then
 	exit 1
 fi
 
+# check if the textures folder exist
+if [ ! -d "./textures" ]; then
+	echo "No textures folder found, please be sure that you are running this script from the tester folder"
+	exit 1
+fi
+
+chmod 000 "./maps/forbidden.cub"
+chmod 000 "./textures/test/forbidden.xpm"
+
 # ask if the user want to test the bonus executable (default is no)
 echo "Do you want to test the bonus executable? (y/N)"
 read -r bonus
@@ -39,7 +48,7 @@ do
 	timeout 1s $exe "$file" > /dev/null 2>&1
 
 	if [ $? -eq 124 ]; then
-		echo "${RED}$file timeout${RESET}"
+		echo "${RED}$file didn't cause an error${RESET}"
 		failed=$((failed+1))
 	fi
 done
